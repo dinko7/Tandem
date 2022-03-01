@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField 'String', 'BASE_URL', '"https://www.google.com/"'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    def room_version = "2.2.6"
+
+    // Modules
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    api project(':domain')
+
+    // Core
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+
+    // Coroutines
+    api "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    // Room
+    api "androidx.room:room-runtime:$room_version"
+    api "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    //Retrofit
+    api 'com.squareup.retrofit2:retrofit:2.9.0'
+    api 'com.squareup.retrofit2:converter-gson:2.9.0'
+    api 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+    //Dagger
+    implementation 'com.google.dagger:dagger:2.40'
+    implementation 'com.google.dagger:dagger-android:2.40'
+    implementation 'com.google.dagger:dagger-android-support:2.40'
+    kapt 'com.google.dagger:dagger-compiler:2.40'
+    kapt 'com.google.dagger:dagger-android-processor:2.40'
+    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.40'
+
+    //Testing
+    testImplementation "junit:junit:4.13.2"
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation "androidx.room:room-testing:$room_version"
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.7.2"
+    testImplementation 'org.robolectric:robolectric:4.5'
+    testImplementation 'org.mockito:mockito-inline:3.9.0'
+    testImplementation "org.mockito.kotlin:mockito-kotlin:3.2.0"
+}

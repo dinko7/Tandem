@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tandem.iml" filepath="$PROJECT_DIR$/.idea/modules/Tandem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Tandem.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Tandem.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/Tandem.data.iml" filepath="$PROJECT_DIR$/.idea/modules/data/Tandem.data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/Tandem.domain.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/Tandem.domain.iml" />
+    </modules>
+  </component>
+</project>
