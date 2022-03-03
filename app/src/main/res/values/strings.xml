@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Tandem</string>
+    <string name="title_native">NATIVE</string>
+    <string name="title_learns">LEARNS</string>
+    <string name="new_member">NEW</string>
+    <string name="community">Community</string>
 </resources>

@@ -1,8 +1,8 @@
 package com.demo.tandem.di.components
 
 import android.app.Application
-import com.demo.tandem.MainActivity
 import com.demo.tandem.di.modules.ApplicationModule
+import com.demo.tandem.ui.tandem.TandemActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -19,5 +19,5 @@ interface ApplicationComponent {
         fun build(): ApplicationComponent
     }
 
-    fun inject(mainActivity: MainActivity)
+    fun inject(tandemActivity: TandemActivity)
 }
