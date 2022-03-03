@@ -1,6 +1,7 @@
 package com.demo.data.di
 
 import com.demo.data.api.endpoint.TandemApi
+import com.demo.data.dao.favorite.FavoriteMemberDao
 import com.demo.data.mapper.CommunityMemberMapper
 import com.demo.data.repository.CommunityRepository
 import dagger.Module
@@ -13,7 +14,8 @@ class RepositoryModule {
     @Singleton
     fun provideCommunityRepository(
         tandemApi: TandemApi,
+        favoriteMemberDao: FavoriteMemberDao,
         communityMemberMapper: CommunityMemberMapper
     ) =
-        CommunityRepository(tandemApi, communityMemberMapper)
+        CommunityRepository(tandemApi, favoriteMemberDao, communityMemberMapper)
 }

@@ -18,7 +18,7 @@
         android:background="@color/light_brown">
 
         <io.github.florent37.shapeofview.shapes.RoundRectView
-            android:id="@+id/profilePicture"
+            android:id="@+id/profile_picture"
             android:layout_width="120dp"
             android:layout_height="120dp"
             app:shape_roundRect_bottomLeftRadius="10dp"
@@ -43,8 +43,8 @@
             android:textSize="18sp"
             android:text="@{member.firstName}"
             android:layout_marginStart="@dimen/margin_10"
-            app:layout_constraintTop_toTopOf="@id/profilePicture"
-            app:layout_constraintStart_toEndOf="@id/profilePicture"
+            app:layout_constraintTop_toTopOf="@id/profile_picture"
+            app:layout_constraintStart_toEndOf="@id/profile_picture"
             tools:text="Dinko" />
 
         <TextView
@@ -61,56 +61,67 @@
             tools:text="What's something not many people know about you?" />
 
         <TextView
-            android:id="@+id/titleNative"
+            android:id="@+id/title_native"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_native"
             android:textStyle="bold"
             android:layout_marginBottom="@dimen/margin_5"
             app:layout_constraintStart_toStartOf="@id/topic"
-            app:layout_constraintBottom_toBottomOf="@id/profilePicture" />
+            app:layout_constraintBottom_toBottomOf="@id/profile_picture" />
 
         <TextView
-            android:id="@+id/nativeLanguage"
+            android:id="@+id/native_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_5"
             android:text="@{member.natives[0].toUpperCase()}"
-            app:layout_constraintBottom_toBottomOf="@id/titleNative"
-            app:layout_constraintStart_toEndOf="@id/titleNative"
-            app:layout_constraintTop_toTopOf="@+id/titleNative"
+            app:layout_constraintBottom_toBottomOf="@id/title_native"
+            app:layout_constraintStart_toEndOf="@id/title_native"
+            app:layout_constraintTop_toTopOf="@+id/title_native"
             tools:text="EN" />
 
         <TextView
-            android:id="@+id/titleLearns"
+            android:id="@+id/title_learns"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_10"
             android:text="@string/title_learns"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/titleNative"
-            app:layout_constraintEnd_toStartOf="@id/learnsLanguage"
-            app:layout_constraintStart_toEndOf="@+id/nativeLanguage" />
+            app:layout_constraintBottom_toBottomOf="@+id/title_native"
+            app:layout_constraintEnd_toStartOf="@id/learns_language"
+            app:layout_constraintStart_toEndOf="@+id/native_language" />
 
         <TextView
-            android:id="@+id/learnsLanguage"
+            android:id="@+id/learns_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_5"
             android:text="@{member.learns[0].toUpperCase()}"
-            app:layout_constraintStart_toEndOf="@id/titleLearns"
-            app:layout_constraintBottom_toBottomOf="@id/titleLearns"
-            app:layout_constraintTop_toTopOf="@+id/titleLearns"
+            app:layout_constraintStart_toEndOf="@id/title_learns"
+            app:layout_constraintBottom_toBottomOf="@id/title_learns"
+            app:layout_constraintTop_toTopOf="@+id/title_learns"
             tools:text="EN" />
 
         <ImageView
-            android:id="@+id/likeButton"
+            android:id="@+id/favorite_on"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="@dimen/margin_15"
+            android:src="@drawable/ic_thumb_up_full"
+            app:layout_constraintBottom_toBottomOf="@+id/title_learns"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibleIf="@{member.isFavorite == true}" />
+
+        <ImageView
+            android:id="@+id/favorite_off"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="@dimen/margin_15"
             android:src="@drawable/ic_thumb_up_outline"
-            app:layout_constraintBottom_toBottomOf="@+id/titleLearns"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/title_learns"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibleIf="@{member.isFavorite == false}" />
 
         <TextView
             android:id="@+id/new_badge"
@@ -135,8 +146,9 @@
             android:text="@{member.referenceCnt.toString()}"
             android:textStyle="bold"
             android:visibleIf="@{member.referenceCnt > 0}"
+            android:layout_marginEnd="@dimen/margin_15"
             app:layout_constraintBottom_toBottomOf="@+id/name"
-            app:layout_constraintEnd_toEndOf="@+id/likeButton"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/name"
             tools:text="12" />
 

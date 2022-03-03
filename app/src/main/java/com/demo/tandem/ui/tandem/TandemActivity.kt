@@ -2,6 +2,7 @@ package com.demo.tandem.ui.tandem
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import com.demo.domain.CommunityMember
 import com.demo.tandem.R
 import com.demo.tandem.databinding.TandemActivityBinding
 import com.demo.tandem.di.utils.ViewModelFactory
@@ -38,5 +39,16 @@ class TandemActivity : BaseActivity<TandemActivityBinding>(R.layout.tandem_activ
 
     private fun setupRecyclerView() {
         binding.recyclerView.adapter = adapter
+        adapter.setItemClickListener { _, position, communityMember ->
+            toggleFavoriteMemberAt(communityMember, position)
+        }
+    }
+
+    private fun toggleFavoriteMemberAt(communityMember: CommunityMember, position: Int) {
+        communityViewModel.toggleFavorite(communityMember)
+        val toggleFavorite = communityMember.isFavorite?.not()
+        adapter.replaceItemAt(communityMember.apply {
+            isFavorite = toggleFavorite
+        }, position)
     }
 }

@@ -16,4 +16,14 @@ class CommunityViewModel @Inject constructor(private val communityRepository: Co
             getCommunityMembersSuccess.postValue(useCaseResult)
         }
     }
+
+    fun toggleFavorite(communityMember: CommunityMember) {
+        executeUseCase {
+            when (communityMember.isFavorite) {
+                true -> communityRepository.deleteFromFavorites(communityMember)
+                false -> communityRepository.addToFavorites(communityMember)
+                null -> {}
+            }
+        }
+    }
 }
