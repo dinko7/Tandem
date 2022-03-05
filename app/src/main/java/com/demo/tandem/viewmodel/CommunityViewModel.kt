@@ -10,9 +10,9 @@ class CommunityViewModel @Inject constructor(private val communityRepository: Co
 
     val getCommunityMembersSuccess = MutableLiveData<List<CommunityMember>>()
 
-    fun getCommunityMembers() {
+    fun getCommunityMembers(page: Int) {
         executeUseCase {
-            val useCaseResult = communityRepository.getCommunityMembers(1)
+            val useCaseResult = communityRepository.getCommunityMembers(page)
             getCommunityMembersSuccess.postValue(useCaseResult)
         }
     }
