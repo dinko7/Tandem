@@ -3,8 +3,10 @@ package com.demo.tandem.viewmodel
 import androidx.lifecycle.MutableLiveData
 import com.demo.data.repository.CommunityRepository
 import com.demo.domain.CommunityMember
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class CommunityViewModel @Inject constructor(private val communityRepository: CommunityRepository) :
     BaseViewModel() {
 

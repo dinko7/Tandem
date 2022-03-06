@@ -1,17 +1,14 @@
 package com.demo.tandem
 
 import android.app.Application
-import com.demo.tandem.di.components.ApplicationComponent
-import com.demo.tandem.di.components.DaggerApplicationComponent
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
+@HiltAndroidApp
 open class TandemApplication : Application() {
-
-    lateinit var applicationComponent: ApplicationComponent
 
     override fun onCreate() {
         super.onCreate()
-        applicationComponent = DaggerApplicationComponent.builder().application(this).build()
         if (isDebugFlavor()) Timber.plant(Timber.DebugTree())
     }
 

@@ -7,7 +7,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.demo.tandem.TandemApplication
 
-abstract class BaseActivity<VB : ViewDataBinding>(@LayoutRes private val layoutRes: Int) : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewDataBinding>(@LayoutRes private val layoutRes: Int) :
+    AppCompatActivity() {
 
     protected lateinit var binding: VB
 
@@ -17,6 +18,4 @@ abstract class BaseActivity<VB : ViewDataBinding>(@LayoutRes private val layoutR
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutRes)
     }
-
-    protected fun injector() = (applicationContext as TandemApplication).applicationComponent
 }

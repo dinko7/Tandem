@@ -6,9 +6,12 @@ import com.demo.data.mapper.CommunityMemberMapper
 import com.demo.data.repository.CommunityRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module(includes = [ApiModule::class, DatabaseModule::class, MapperModule::class])
+@Module
+@InstallIn(SingletonComponent::class)
 class RepositoryModule {
     @Provides
     @Singleton

@@ -1,18 +1,18 @@
 package com.demo.tandem.ui.tandem
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.domain.CommunityMember
 import com.demo.tandem.R
 import com.demo.tandem.databinding.TandemActivityBinding
-import com.demo.tandem.di.utils.ViewModelFactory
 import com.demo.tandem.ui.base.BaseActivity
 import com.demo.tandem.ui.common.PaginationRecyclerViewScrollListener
 import com.demo.tandem.ui.common.RecyclerViewPaginationHandler
 import com.demo.tandem.viewmodel.CommunityViewModel
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TandemActivity : BaseActivity<TandemActivityBinding>(R.layout.tandem_activity),
     RecyclerViewPaginationHandler {
 
@@ -25,20 +25,11 @@ class TandemActivity : BaseActivity<TandemActivityBinding>(R.layout.tandem_activ
     override var isLastPage: Boolean = false
     override val pagingAction: () -> Unit = { getCommunityMembers() }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private val communityViewModel by lazy {
-        ViewModelProvider(
-            this,
-            viewModelFactory
-        )[CommunityViewModel::class.java]
-    }
+    private val communityViewModel: CommunityViewModel by viewModels()
     private val adapter = CommunityMembersRecyclerViewAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        injector().inject(this)
         setupRecyclerView()
         observeViewModel()
         getCommunityMembers()
